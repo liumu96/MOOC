@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Binary  Tree(查找最小结点)</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function BinaryTree() {
+			var Node = function(key) {//结点定义
+				this.key = key;
+				this.left = null;
+				this.right = null;
+			};
+
+			var root = null; //根节点
+
+			var insertNode = function(node, newNode) {
+				if(newNode.key < node.key) {
+					if(node.left === null) {
+						node.left = newNode;
+					} else {
+						insertNode(node.left, newNode);
+					}
+				} else {
+					if(node.right === null) {
+						node.right = newNode;
+					} else {
+						insertNode(node.right, newNode);
+					}
+				}
+			}
+
+			this.insert = function(key) {
+				var newNode = new Node(key);
+				if(root === null) {
+					root = newNode;
+				} else {
+					insertNode(root, newNode);
+				}
+			};
+
+			//查找最小值
+			var minNode = function(node) {
+				if (node !== null) {
+					while(node && node.left !== null) {
+						node = node.left;
+					}
+					return node.key;
+				}
+			}
+
+			this.min = function() {
+				return minNode(root);
+			};
+		}
+
+		var nodes = [8,3,10,1,6,14,4,7,13];
+		var binaryTree = new BinaryTree();
+		nodes.forEach(function(key) {
+			binaryTree.insert(key);
+		});
+
+		var callback = function(key) {
+			console.log(key);
+		}
+
+		console.log("min node is:" + binaryTree.min());
+		
+
+	</script>
+</body>
+</html>
