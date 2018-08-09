@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Binary  Tree(中序遍历)</title>
+	<title>Binary  Tree(后序遍历)</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -38,31 +38,17 @@
 					insertNode(root, newNode);
 				}
 			};
-			//中序遍历
-			/*var inOrderTraverseNode = function(node,callback) {
-				if(node !== null) {
-					inOrderTraverseNode(node.left, callback);
+
+			var postOrderTraverseNode = function(node,callback) {
+				if (node !== null) {
+					postOrderTraverseNode(node.left,callback);
+					postOrderTraverseNode(node.right,callback);
 					callback(node.key);
-					inOrderTraverseNode(node.right, callback);
 				}
 			}
 
-			this.inOrderTraverse = function(callback) {
-				inOrderTraverseNode(root,callback);
-			}
-			*/
-			//前序遍历
-			var preOrderTraverseNode = function(node,callback) {
-				if(node !== null){
-					callback(node.key);
-					preOrderTraverseNode(node.left,callback);
-					preOrderTraverseNode(node.right,callback);
-				}
-				
-			}
-
-			this.preOrderTraverse = function(callback) {
-				preOrderTraverseNode(root,callback);
+			this.postOrderTraverse = function(callback) {
+				postOrderTraverseNode(root, callback);
 			}
 		}
 
@@ -76,8 +62,9 @@
 			console.log(key);
 		}
 
-		//binaryTree.inOrderTraverse(callback);
-		binaryTree.preOrderTraverse(callback);
+		binaryTree.postOrderTraverse(callback);
+		
+
 	</script>
 </body>
 </html>
